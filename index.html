@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>我的个人网站</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Open+Sans:wght@300;400;700&display=swap');
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <div class="hero-content">
+            <h1>欢迎来到我的个人网站</h1>
+            <p>探索我的故事、作品和联系方式</p>
+        </div>
+    </header>
+
+    <section id="about" class="section about">
+        <h2>关于我</h2>
+        <p>您好！我是一个热爱创造与分享的人。这是一个简单的个人网站模板，展示了简介、作品集和联系方式等内容。您可以根据自己的需要，编辑这些文字与图片，构建属于自己的独特主页。</p>
+    </section>
+
+    <section id="portfolio" class="section portfolio">
+        <h2>作品集</h2>
+        <div class="projects">
+            <div class="project">
+                <h3>项目一</h3>
+                <p>这里可以放置您的第一个项目描述。例如：一个网页设计作品、一篇文章或其他创意成果。</p>
+            </div>
+            <div class="project">
+                <h3>项目二</h3>
+                <p>这里可以放置您的第二个项目描述。例如：一个应用程序、摄影作品或者音乐创作。</p>
+            </div>
+            <div class="project">
+                <h3>项目三</h3>
+                <p>这里可以放置您的第三个项目描述。例如：某个研究成果、推画作品或其他内容。</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="section contact">
+        <h2>联系方式</h2>
+        <p>想要联系我？可以通过以下方式：</p>
+        <ul>
+            <li>邮箱：example@example.com</li>
+            <li>电话：+1 (555) 123‑4567</li>
+            <li>社交媒体：在这里链接到您的社交媒体账号</li>
+        </ul>
+    </section>
+
+    <footer>
+        <p>&copy; <span id="year"></span> 您的名字. 保留所有权利。</p>
+    </footer>
+
+    <script>
+        // 设置当前年份
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
