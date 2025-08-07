@@ -5,5 +5,8 @@
   "type": "module",
   "dependencies": {
     "@netlify/neon": "^0.1.0"
+  },
+  "scripts": {
+    "build": "echo 'Skipping build step because this is a static site'"
   }
 }
