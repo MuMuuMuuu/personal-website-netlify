@@ -7,7 +7,12 @@
 // Neon client from `@netlify/neon` uses this variable to connect.
 
 import { neon } from '@netlify/neon';
-import type { Context, Config } from '@netlify/functions';
+// Note: we deliberately avoid importing types using `import type` here
+// because Netlify builds run on Node without a TypeScript compiler. In
+// pure JavaScript, type-only imports cause syntax errors. We instead
+// import the runtime definitions (if needed) or omit the type import
+// entirely. The handler signature below does not specify TypeScript
+// parameter types, which keeps it valid JavaScript.
 
 // Initialize the Neon client. Connection details are read from
 // process.env.NETLIFY_DATABASE_URL automatically.
@@ -37,7 +42,7 @@ async function ensureTable() {
  * @param {Context} context Function execution context (unused)
  * @returns {Promise<Response>} A promise resolving to the HTTP response
  */
-export default async function handler(req: Request, context: Context) {
+export default async function handler(req, context) {
   await ensureTable();
 
   if (req.method === 'GET') {
@@ -65,7 +70,9 @@ export default async function handler(req: Request, context: Context) {
   return new Response('Method Not Allowed', { status: 405 });
 }
 
-// Configure the function to run at the `/api/notes` path
-export const config: Config = {
+// Configure the function to run at the `/api/notes` path.  Do not type
+// annotate this constant with `Config` because the build environment does
+// not understand TypeScript syntax.
+export const config = {
   path: '/api/notes',
 };
