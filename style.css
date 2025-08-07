@@ -1,0 +1,172 @@
+/* Base styles */
+body {
+    margin: 0;
+    font-family: 'Open Sans', sans-serif;
+    line-height: 1.6;
+    color: #333;
+}
+
+h1, h2, h3 {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0 0 0.5em;
+    line-height: 1.2;
+}
+
+/* Hero section */
+/*
+ * Hero section uses a linear gradient instead of a background image. This
+ * gradient provides a light, pastel‑colored backdrop suitable for
+ * personal websites without requiring additional image uploads. The
+ * gradient direction and color stops are selected to evoke a calming,
+ * geometric aesthetic inspired by the original design.
+ */
+.hero {
+    background: linear-gradient(135deg,
+        #fce2ce 0%, /* soft peach */
+        #e0f5fb 35%, /* light blue */
+        #f0ebe6 70%, /* warm beige */
+        #d7e8e7 100% /* pale aqua */
+    );
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #fff;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+.hero::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+}
+
+.hero-content {
+    z-index: 2;
+    max-width: 80%;
+    padding: 0 20px;
+}
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 0.5em;
+    font-weight: 600;
+}
+
+.hero p {
+    font-size: 1.5rem;
+    font-weight: 300;
+}
+
+/* Section styles */
+.section {
+    padding: 80px 20px;
+    text-align: center;
+}
+
+.about {
+    background-color: #f5f5f5;
+}
+
+.portfolio {
+    background-color: #ffffff;
+}
+
+.contact {
+    background-color: #f5f5f5;
+}
+
+.section h2 {
+    font-size: 2.5rem;
+    margin-bottom: 0.75em;
+    color: #222;
+}
+
+.section p {
+    max-width: 800px;
+    margin: 0 auto 2em;
+    font-size: 1rem;
+    line-height: 1.8;
+}
+
+/* Portfolio projects */
+.projects {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.project {
+    background: #fafafa;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+    padding: 20px;
+    flex: 1 1 280px;
+    max-width: 330px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.project:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.project h3 {
+    font-size: 1.25rem;
+    margin-bottom: 0.5em;
+    color: #444;
+}
+
+.project p {
+    font-size: 0.9rem;
+    color: #555;
+}
+
+/* Contact section */
+.contact ul {
+    list-style: none;
+    padding: 0;
+    margin: 1.5em 0;
+}
+
+.contact li {
+    font-size: 1rem;
+    margin-bottom: 0.5em;
+    color: #444;
+}
+
+/* Footer */
+footer {
+    background-color: #222;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    font-size: 0.875rem;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .hero h1 {
+        font-size: 2.25rem;
+    }
+    .hero p {
+        font-size: 1rem;
+    }
+    .section h2 {
+        font-size: 2rem;
+    }
+    .project {
+        flex: 1 1 100%;
+        max-width: 100%;
+    }
+}
