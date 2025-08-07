@@ -4,6 +4,6 @@
   "description": "Personal portfolio site for Yinzheng Xiong with serverless notes API.",
   "type": "module",
   "dependencies": {
-    "@netlify/neon": "^0.0.0"
+    "@netlify/neon": "^0.1.0"
   }
 }
