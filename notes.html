@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notes - Yinzheng Xiong</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Open+Sans:wght@300;400;700&display=swap');
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Notes & Reflections</h1>
+            <p>Examples of my personal notes on various topics.</p>
+        </div>
+    </header>
+
+    <section class="section about">
+        <h2>Notes</h2>
+        <div id="notes-container" class="projects"></div>
+    </section>
+
+    <footer>
+        <p>&copy; <span id="year"></span> Yinzheng Xiong. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Set the current year in the footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        /*
+         * Fetch notes from the serverless API endpoint.
+         *
+         * This page requests notes from `/api/notes`, which is implemented as a
+         * Netlify Function. The function connects to a Postgres database using
+         * Netlify DB and returns a list of notes in JSON format. Each note
+         * should contain a `title` and `content` property. If the fetch fails
+         * (for example if the function hasn’t been set up yet), an error
+         * message will be logged to the console and no notes will be displayed.
+         */
+        fetch('/api/notes')
+            .then((response) => {
+                if (!response.ok) throw new Error('Network response was not ok');
+                return response.json();
+            })
+            .then((notes) => {
+                const container = document.getElementById('notes-container');
+                // If the API returns a list of rows from the database, use the
+                // expected property names. Otherwise treat the response as an
+                // array of objects with `title` and `content` fields.
+                notes.forEach((note) => {
+                    const div = document.createElement('div');
+                    div.className = 'project';
+                    // Support both { title, content } and { title: ..., content: ... }
+                    const title = note.title || note.TITLE || note.name || 'Untitled';
+                    const content = note.content || note.CONTENT || note.description || '';
+                    div.innerHTML = `<h3>${title}</h3><p>${content}</p>`;
+                    container.appendChild(div);
+                });
+            })
+            .catch((error) => {
+                console.error('Error loading notes:', error);
+            });
+    </script>
+</body>
+</html>
