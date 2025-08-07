@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="zh">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的个人网站</title>
+    <title>Yinzheng Xiong Portfolio</title>
     <link rel="stylesheet" href="style.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Open+Sans:wght@300;400;700&display=swap');
@@ -12,50 +12,67 @@
 <body>
     <header class="hero">
         <div class="hero-content">
-            <h1>欢迎来到我的个人网站</h1>
-            <p>探索我的故事、作品和联系方式</p>
+            <h1>Hello, I’m Yinzheng Xiong — welcome to my portfolio</h1>
+            <p>Discover my latest projects, explore my journey in data science and mathematics, and learn more about my academic and personal work.</p>
         </div>
     </header>
 
     <section id="about" class="section about">
-        <h2>关于我</h2>
-        <p>您好！我是一个热爱创造与分享的人。这是一个简单的个人网站模板，展示了简介、作品集和联系方式等内容。您可以根据自己的需要，编辑这些文字与图片，构建属于自己的独特主页。</p>
+        <h2>About Me</h2>
+        <p>Hello and welcome! I’m Yinzheng Xiong, a Data Science and Mathematics major from Northeastern University. This portfolio is not merely a collection of my work, but a dynamic showcase of my ongoing personal projects. It represents a dedicated effort to document and present the skills and knowledge I have diligently acquired through my consistent daily studies. By curating this portfolio, I aim to provide a vivid and detailed illustration of my learning journey, featuring the progression and depth of my understanding in various areas.</p>
     </section>
 
-    <section id="portfolio" class="section portfolio">
-        <h2>作品集</h2>
+    <section id="categories" class="section portfolio">
+        <h2>Projects Categories</h2>
         <div class="projects">
             <div class="project">
-                <h3>项目一</h3>
-                <p>这里可以放置您的第一个项目描述。例如：一个网页设计作品、一篇文章或其他创意成果。</p>
+                <h3>AnalyticaWorks</h3>
+                <p>AnalyticaWorks is a comprehensive repository designed to showcase my projects in data engineering, data simulation, and data science.</p>
             </div>
             <div class="project">
-                <h3>项目二</h3>
-                <p>这里可以放置您的第二个项目描述。例如：一个应用程序、摄影作品或者音乐创作。</p>
+                <h3>StatMathAI</h3>
+                <p>Explore the exciting intersection of statistics, mathematics, and machine learning in our dynamic showcase of StatMathAI projects. Each project reflects practical applications in these intertwined fields, offering a glimpse into data‑driven applications.</p>
             </div>
             <div class="project">
-                <h3>项目三</h3>
-                <p>这里可以放置您的第三个项目描述。例如：某个研究成果、推画作品或其他内容。</p>
+                <h3>ENGW 3302</h3>
+                <p>For the Fall 2023 semester, I am taking ENGW 3302: Advanced Writing in the Technical Professions at Northeastern University, under the guidance of Professor Stephen Alison. This class focuses on delivering in‑depth knowledge and skills in technical writing and communication.</p>
+            </div>
+            <div class="project">
+                <h3>Overall Projects</h3>
+                <p>This section displays a comprehensive list of my projects, encompassing a wide range from class assignments to extracurricular activities, and includes both written and data‑focused projects without specific categorization.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="latest" class="section about">
+        <h2>Latest Projects</h2>
+        <div class="projects">
+            <div class="project">
+                <h3>Classification and Segmentation of Hemorrhages in Brain CT Images</h3>
+                <p>Segmenting hemorrhages in brain CT images enhances healthcare by enabling early detection and personalized treatment. Automated segmentation streamlines medical workflows, reducing professionals’ burden and expediting patient care.</p>
+            </div>
+            <div class="project">
+                <h3>Extensible NLP Frameworks</h3>
+                <p>Many individuals listen to music daily. It’s become a way of life as we listen to different tunes. This project explores flexible natural language processing frameworks that can be adapted to a variety of tasks and datasets.</p>
             </div>
         </div>
     </section>
 
     <section id="contact" class="section contact">
-        <h2>联系方式</h2>
-        <p>想要联系我？可以通过以下方式：</p>
+        <h2>Contact</h2>
+        <p>If you’d like to get in touch, you can reach me through the following channels:</p>
         <ul>
-            <li>邮箱：example@example.com</li>
-            <li>电话：+1 (555) 123‑4567</li>
-            <li>社交媒体：在这里链接到您的社交媒体账号</li>
+            <li>Email: yinzheng@example.com</li>
+            <li>LinkedIn: <a href="https://linkedin.com" target="_blank" rel="noopener">Connect on LinkedIn</a></li>
         </ul>
     </section>
 
     <footer>
-        <p>&copy; <span id="year"></span> 您的名字. 保留所有权利。</p>
+        <p>&copy; <span id="year"></span> Yinzheng Xiong. All rights reserved.</p>
     </footer>
 
     <script>
-        // 设置当前年份
+        // Set current year
         document.getElementById('year').textContent = new Date().getFullYear();
     </script>
 </body>
