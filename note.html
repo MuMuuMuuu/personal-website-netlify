@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Note Details - Yinzheng Xiong</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Open+Sans:wght@300;400;700&display=swap');
+        /* Additional styling to format markdown-style content */
+        .note-content img {
+            max-width: 100%;
+            height: auto;
+            margin: 1rem 0;
+        }
+        .note-content p {
+            margin-bottom: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <header class="hero">
+        <div class="hero-content">
+            <h1 id="note-title">Note</h1>
+            <p id="note-subtitle"></p>
+        </div>
+    </header>
+
+    <section class="section about">
+        <div id="note-content" class="note-content"></div>
+    </section>
+
+    <footer>
+        <p>&copy; <span id="year"></span> Yinzheng Xiong. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Utility function to convert very simple Markdown into HTML. It
+        // supports paragraphs, images (\![]()), and links ([]()). For
+        // complex markdown features you could replace this with a library
+        // like marked.js loaded from a CDN.
+        function renderMarkdown(md) {
+            let html = md;
+            // Images: ![alt](url)
+            html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" />');
+            // Links: [text](url)
+            html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>');
+            // Split into paragraphs by two or more newlines
+            const paragraphs = html.split(/\n{2,}/).map(para => para.trim()).filter(Boolean);
+            return paragraphs.map(para => `<p>${para.replace(/\n/g, '<br>')}</p>`).join('\n');
+        }
+
+        // Set the current year in the footer
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Get note ID from the query string
+        const params = new URLSearchParams(window.location.search);
+        const noteId = params.get('id');
+        if (!noteId) {
+            document.getElementById('note-content').innerHTML = '<p>Note ID is missing in the URL.</p>';
+        } else {
+            fetch(`/api/notes?id=${encodeURIComponent(noteId)}`)
+                .then((response) => {
+                    if (!response.ok) throw new Error('Network response was not ok');
+                    return response.json();
+                })
+                .then((note) => {
+                    if (!note) {
+                        document.getElementById('note-content').innerHTML = '<p>Note not found.</p>';
+                        return;
+                    }
+                    const title = note.title || note.TITLE || note.name || 'Untitled';
+                    const content = note.content || note.CONTENT || note.description || '';
+                    document.getElementById('note-title').textContent = title;
+                    // Render markdown content into HTML
+                    document.getElementById('note-content').innerHTML = renderMarkdown(content);
+                })
+                .catch((error) => {
+                    console.error('Error loading note:', error);
+                    document.getElementById('note-content').innerHTML = '<p>Error loading note.</p>';
+                });
+        }
+    </script>
+</body>
+</html>
