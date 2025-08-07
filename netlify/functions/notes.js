@@ -46,7 +46,24 @@ export default async function handler(req, context) {
   await ensureTable();
 
   if (req.method === 'GET') {
-    // Fetch all notes from the database, ordered by most recent first
+    // Parse the URL to extract query parameters. Netlify passes the
+    // full request URL to the handler, which can be used with the
+    // standard URL class. If an `id` parameter is provided, return
+    // a single note. Otherwise return all notes.
+    const url = new URL(req.url);
+    const idParam = url.searchParams.get('id');
+    if (idParam) {
+      // Return a single note by ID. Use parameterized query to
+      // prevent SQL injection. Limit to one row.
+      const result = await sql('SELECT * FROM notes WHERE id = $1 LIMIT 1', [idParam]);
+      const note = result[0] || null;
+      return new Response(JSON.stringify(note), {
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    // Otherwise, fetch all notes from the database, ordered by
+    // most recent first
     const rows = await sql('SELECT * FROM notes ORDER BY id DESC');
     return new Response(JSON.stringify(rows), {
       headers: { 'Content-Type': 'application/json' },
